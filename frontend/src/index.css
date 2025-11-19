@@ -1,68 +1,53 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@import url("https://fonts.googleapis.com/css2?family=Fugaz+One&family=Karla:ital,wght@0,200..800;1,200..800&family=Macondo&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import "tailwindcss";
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+* {
+  box-sizing: border-box;
 }
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  background-image: linear-gradient(-60deg, #16a085 0%, #f4d03f 100%);
+  /* background-image: radial-gradient(circle, #588157, #ebf5ee); */
+  /* background-color: #66c473; */
+  background-attachment: fixed;
+  background-size: contain;
+  background-position: bottom left;
+  background-repeat: no-repeat;
+  background-blend-mode: multiply;
+}
+.font-macondo {
+  font-family: "Macondo";
+}
+.font-poppins {
+  font-family: "Poppins";
+}
+.font-karla {
+  font-family: "Karla";
+}
+.font-fugaz {
+  font-family: "Fugaz One";
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+.styled-scrollbar {
+  overflow-y: auto;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+/* Width of the scrollbar */
+.styled-scrollbar::-webkit-scrollbar {
+  width: 5px;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+/* Track (background) */
+.styled-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle (the moving part) */
+.styled-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent grey */
+  border-radius: 10px; /* Rounded edges */
+}
+
+/* Handle on hover */
+.styled-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.8);
 }
