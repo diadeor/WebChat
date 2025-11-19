@@ -22,7 +22,11 @@ const Message = ({
   const updatedUser = user ? user?.slice(0, 5) : "";
   return (
     <li className={`flex flex-row ${other ? "justify-start" : "justify-end"} items-center`}>
-      <p className={`${other ? "bg-gray-800" : "bg-blue-700"} p-2 px-4 text-center rounded-full`}>
+      <p
+        className={`${other ? "bg-gray-800" : "bg-blue-700"} p-2 px-4 text-left max-w-6/10 ${
+          msg.length > 25 ? "rounded-2xl" : "rounded-full"
+        }`}
+      >
         {`${updatedUser ? `${updatedUser} :` : ""} ${msg}`}
       </p>
     </li>
@@ -78,12 +82,10 @@ const Chat = () => {
           autoComplete="off"
           placeholder="Message"
           onKeyDown={(e) => handleEnter(e)}
-          className="bg-white/10 border-2 border-blue-300 w-11/12 h-12 rounded-full pl-4  placeholder:text-blue-300 font-poppins outline-0"
+          className="bg-white/10 border-2 border-blue-300 w-11/12 flex-1 h-12 rounded-full px-4  placeholder:text-blue-300 font-poppins outline-0"
         />
         <IoSend
-          className={`w-1/12 text-blue-300 ${
-            isValid ? "active:scale-80" : ""
-          } transition hover:scale-95`}
+          className={` text-blue-300 ${isValid ? "active:scale-80" : ""} transition hover:scale-95`}
           size="1.7em"
           onClick={handleSend}
         />

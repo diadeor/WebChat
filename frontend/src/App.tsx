@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import NavBar from "./components/NavBar.tsx";
 import WebApp from "./pages/WebApp.tsx";
+import Login from "./pages/Login.tsx";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
             }
           />
           <Route path="/app/*" element={<WebApp />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </main>
     </Router>
