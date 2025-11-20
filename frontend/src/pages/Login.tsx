@@ -1,22 +1,37 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { GoogleLogin } from "@react-oauth/google";
 import axios from "axios";
+import { useAuth } from "../contexts/AuthContext.tsx";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const url = "/api/auth/google";
+  const { user, setUser } = useAuth();
+  const nav = useNavigate();
+
+  useEffect(() => {
+    user && nav("/app");
+  }, [user]);
+
   const googleLoginSuccess = async (response: any) => {
-    const token = response.credential;
+    try {
+      const token = response.credential;
 
-    const { data } = await axios.post(
-      url,
-      { token },
-      {
-        withCredentials: true,
-        validateStatus: () => true,
-      },
-    );
+      const { data } = await axios.post(
+        url,
+        { token },
+        {
+          withCredentials: true,
+          validateStatus: () => true,
+        },
+      );
 
-    console.log(data);
+      if (data.success) {
+        setUser(data.user);
+      }
+    } catch (error) {
+      console.log("error", error);
+    }
   };
 
   const googleLoginError = () => {
