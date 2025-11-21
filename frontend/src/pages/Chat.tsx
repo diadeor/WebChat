@@ -59,7 +59,7 @@ const Chat = ({ name, img }: { name: string; img: string }) => {
 
   const handleEnter = (e: { key: string }) => {
     const key = e.key;
-    socket.emit("activity", { user: user.name, userId: user.id });
+    socket.emit("activity");
 
     if (key === "Enter") {
       handleSend();
@@ -91,11 +91,15 @@ const Chat = ({ name, img }: { name: string; img: string }) => {
       </ul>
       {typing.length != 0 && (
         <p className="font-poppins px-3 bg-black/20 pt-2 pb-0">
-          <span className="font-bold">{typing.map((item: string) => `${item}, `)}</span> is
-          typing...
+          <span className="font-bold">
+            {typing.map(
+              (item: { firstName: string }) => `${item.firstName}${typing.length > 1 ? ", " : ""}`,
+            )}
+          </span>{" "}
+          is typing...
         </p>
       )}
-      <div className="input flex flex-row bottom-0 gap-2 px-3 py-4 pr-2 rounded-b-lg bg-black/20 w-full items-center ">
+      <div className="input flex flex-row bottom-0 gap-2 px-3 py-4 pr-2 rounded-b-lg rounded-t-3xl bg-black/20 w-full items-center ">
         <input
           type="text"
           name="message"

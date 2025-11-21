@@ -24,9 +24,10 @@ const SocketProvider = ({ children }: { children: ReactNode }) => {
   const [typing, setTyping] = useState<Typing[]>([]);
   const { user } = useAuth();
   const msgUrl = "/api/global";
+  let activityTimer: any;
 
   useEffect(() => {
-    const socketTemp = io("ws://localhost:5000");
+    const socketTemp = io("ws://localhost:5000", { autoConnect: false, withCredentials: true });
     const getMessages = async () => {
       const { data } = await axios.get(msgUrl);
       if (data.success) {
@@ -34,22 +35,23 @@ const SocketProvider = ({ children }: { children: ReactNode }) => {
       }
     };
     getMessages();
-    setSocket(user ? socketTemp : null);
+    user && socketTemp.connect();
+    setSocket(socketTemp);
 
     socketTemp.on("receive_message", (data) => {
       setMessages((prev) => [...prev, data]);
     });
 
     socketTemp.on("typing", (data) => {
-      if (!typing.find((item) => item.userId === data.userId)) {
-        setTyping((prev) => [...prev, data]);
-        console.log(typing);
-      }
+      setTyping((prev) => {
+        const userExists = prev.find((item) => item.userId === data.userId);
+        return userExists ? [...prev] : [...prev, data];
+      });
+      clearTimeout(activityTimer);
+      activityTimer = setTimeout(() => {
+        setTyping([]);
+      }, 3000);
     });
-
-    // setInterval(() => {
-    //   setTyping([]);
-    // }, 20000);
 
     return () => {
       socketTemp.close();
@@ -58,13 +60,8 @@ const SocketProvider = ({ children }: { children: ReactNode }) => {
 
   const sendGlobalMessage = (text: string) => {
     if (socket && text.trim() !== "") {
-      socket.emit("message", {
-        sender: {
-          id: user.id,
-          picture: user.picture,
-        },
-        text,
-      });
+      socket.emit("message", text);
+      clearTimeout(activityTimer);
     }
   };
 
