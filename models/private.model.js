@@ -2,13 +2,8 @@ import mongoose from "mongoose";
 
 const privateSchema = new mongoose.Schema(
   {
+    participants: [String],
     from: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-      required: true,
-      index: true,
-    },
-    to: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true,

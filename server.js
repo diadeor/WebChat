@@ -11,6 +11,7 @@ import Global from "./models/global.model.js";
 import globalRouter from "./routes/global.route.js";
 import jwt from "jsonwebtoken";
 import User from "./models/users.model.js";
+import mongoose, { Mongoose } from "mongoose";
 
 const app = express();
 
@@ -25,6 +26,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+console.log(["apple", "banana"].includes("apple" && "banana"));
 // Routes
 app.use("/api/auth", authRouter);
 app.use("/api/users", authUser, userRouter);
