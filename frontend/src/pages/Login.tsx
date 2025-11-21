@@ -5,7 +5,7 @@ import { useAuth } from "../contexts/AuthContext.tsx";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const url = "/api/auth/google";
+  const url = `${import.meta.env.VITE_API_URL}/api/auth/google`;
   const { user, setUser } = useAuth();
   const nav = useNavigate();
 
