@@ -27,7 +27,10 @@ const SocketProvider = ({ children }: { children: ReactNode }) => {
   let activityTimer: any;
 
   useEffect(() => {
-    const socketTemp = io("ws://localhost:5000", { autoConnect: false, withCredentials: true });
+    const socketTemp = io("ws://web-chat-virid-two.vercel.app/", {
+      autoConnect: false,
+      withCredentials: true,
+    });
     const getMessages = async () => {
       const { data } = await axios.get(msgUrl);
       if (data.success) {
