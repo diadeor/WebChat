@@ -23,13 +23,15 @@ const SocketProvider = ({ children }: { children: ReactNode }) => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [typing, setTyping] = useState<Typing[]>([]);
   const { user } = useAuth();
-  const msgUrl = `${import.meta.env.VITE_API_URL}/api/global`;
+  const backendUrl = import.meta.env.VITE_API_URL;
+  const msgUrl = `${backendUrl}/api/global`;
   let activityTimer: any;
 
   useEffect(() => {
-    const socketTemp = io("ws://webchat-production-b89a.up.railway.app", {
+    const socketTemp = io(backendUrl, {
       autoConnect: false,
       withCredentials: true,
+      transports: ["websocket", "polling"],
     });
     const getMessages = async () => {
       const { data } = await axios.get(msgUrl);

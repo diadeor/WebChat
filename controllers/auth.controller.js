@@ -28,8 +28,8 @@ export const googleLogin = async (req, res, next) => {
     res.cookie("token", appToken, {
       httpOnly: true,
       maxAge: 1000 * 60 * 60 * 24 * 30,
-      secure: false,
-      sameSite: "strict",
+      secure: true,
+      sameSite: "none",
     });
 
     res.json({
