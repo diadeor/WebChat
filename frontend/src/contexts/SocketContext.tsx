@@ -27,7 +27,7 @@ const SocketProvider = ({ children }: { children: ReactNode }) => {
   let activityTimer: any;
 
   useEffect(() => {
-    const socketTemp = io("ws://web-chat-virid-two.vercel.app/", {
+    const socketTemp = io("ws://webchat-production-b89a.up.railway.app", {
       autoConnect: false,
       withCredentials: true,
     });

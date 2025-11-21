@@ -11,7 +11,7 @@ import Global from "./models/global.model.js";
 import globalRouter from "./routes/global.route.js";
 import jwt from "jsonwebtoken";
 import User from "./models/users.model.js";
-import mongoose, { Mongoose } from "mongoose";
+import cors from "cors";
 
 const app = express();
 
@@ -25,6 +25,17 @@ const expressServer = app.listen(PORT, () => {
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+app.use(
+  cors({
+    origin: [
+      "https://web-chat-virid-two.vercel.app", // Your Production Vercel URL
+      "http://localhost:5173", // Your Localhost (Vite default)
+    ], // Paste EXACTLY this string
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true, // Allows cookies to be sent
+  }),
+);
 
 // Routes
 app.use("/api/auth", authRouter);
