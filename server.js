@@ -26,7 +26,6 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-console.log(["apple", "banana"].includes("apple" && "banana"));
 // Routes
 app.use("/api/auth", authRouter);
 app.use("/api/users", authUser, userRouter);
@@ -54,6 +53,7 @@ io.use((server, next) => {
       .find((cookie) => cookie.includes("token="));
     const token = cookies.slice(6);
     const user = jwt.verify(token, JWT_SECRET);
+    if (!user) throw new Error("not logged in");
     server.data.user = user;
     next();
   } catch (error) {
