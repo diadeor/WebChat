@@ -16,7 +16,7 @@ import cors from "cors";
 const app = express();
 
 // Listener
-const expressServer = app.listen(PORT, () => {
+const expressServer = app.listen(PORT, "0.0.0.0", () => {
   console.log(`Listening on port ${PORT}`);
   ConnectDB();
 });
