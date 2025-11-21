@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { GoogleLogin } from "@react-oauth/google";
 import axios from "axios";
 import { useAuth } from "../contexts/AuthContext.tsx";

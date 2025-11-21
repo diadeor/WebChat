@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 const Home = () => {
   return (
     <div className="home-container h-svh flex flex-row items-center justify-center w-full">
