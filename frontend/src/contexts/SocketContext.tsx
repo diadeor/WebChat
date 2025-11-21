@@ -23,7 +23,7 @@ const SocketProvider = ({ children }: { children: ReactNode }) => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [typing, setTyping] = useState<Typing[]>([]);
   const { user } = useAuth();
-  const msgUrl = "/api/global";
+  const msgUrl = `${import.meta.env.VITE_API_URL}/api/global`;
   let activityTimer: any;
 
   useEffect(() => {

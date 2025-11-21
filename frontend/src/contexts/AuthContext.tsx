@@ -18,7 +18,8 @@ type User = {
 const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User>();
   const [loading, setLoading] = useState<Boolean>(true);
-  const url = "/api/users/me";
+  const url = `${import.meta.env.VITE_API_URL}/api/users/me`;
+
   useEffect(() => {
     const fetchUser = async () => {
       try {
