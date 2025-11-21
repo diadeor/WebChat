@@ -36,6 +36,7 @@ app.use(
 );
 
 // Routes
+app.get("/", (req, res, next) => res.send("Health check ok !!"));
 app.use("/api/auth", authRouter);
 app.use("/api/users", authUser, userRouter);
 app.use("/api/global", globalRouter);

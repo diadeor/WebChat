@@ -25,10 +25,11 @@ const SocketProvider = ({ children }: { children: ReactNode }) => {
   const { user } = useAuth();
   const backendUrl = import.meta.env.VITE_API_URL;
   const msgUrl = `${backendUrl}/api/global`;
+  const socketUrl = "wss://webchat-production-b89a.up.railway.app/";
   let activityTimer: any;
 
   useEffect(() => {
-    const socketTemp = io(backendUrl, {
+    const socketTemp = io(socketUrl, {
       autoConnect: false,
       withCredentials: true,
       transports: ["websocket", "polling"],
