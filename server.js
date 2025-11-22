@@ -14,13 +14,13 @@ import User from "./models/users.model.js";
 import cors from "cors";
 
 const app = express();
+app.set("trust proxy", 1);
 
 // Listener
 const expressServer = app.listen(PORT, "0.0.0.0", () => {
   console.log(`Listening on port ${PORT}`);
   ConnectDB();
 });
-app.set("trust proxy", 1);
 
 // Middlewares
 app.use(cookieParser());
@@ -31,7 +31,7 @@ app.use(
   cors({
     origin: ["https://web-chat-virid-two.vercel.app", "http://localhost:5173"],
     methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true, // Allows cookies to be sent
+    credentials: true,
   }),
 );
 
